@@ -1,26 +1,21 @@
 /*!
- * Boor
+ * YoctoJS
  *
  * Copyright(c) 2016-2017 Javanile.org
  * MIT Licensed
  */
 
-module.exports = {
+const fu = require('nodejs-fu')
+    , join = require('path').join
 
-    /**
-     *
-     */
-    foreach: function (iterable, statament) {
-        var type = statament.length;
+module.exports = function (args) {
+    let app = '';
 
-        for (var key in iterable) {
-            if (iterable.hasOwnProperty(key)) {
-                if (type === 1) {
-                    statament(iterable[key])
-                } else {
-                    statament(key, iterable[key])
-                }
-            }
-        }
+    if (typeof args == "string") {
+        app = fu.readFile(args);
     }
-}
+
+    let yoctojs = fu.readFile(join(__dirname, 'yocto.js'))
+
+    return yoctojs + app
+};
