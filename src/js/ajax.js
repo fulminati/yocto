@@ -108,26 +108,3 @@ function getRequest(cors) {
 function setDefault(obj, key, value) {
     obj[key] = obj[key] || value
 }
-
-
-console.log("A")
-
-
-
-console.log("B")
-
-
-/**
- *
- *
- */
-document.addEventListener('DOMContentLoaded', run);
-
-
-function run() {
-
-    ajax({url:'api/list.json'}, function(list, asa) {
-        console.log(list, asa)
-    })
-
-}

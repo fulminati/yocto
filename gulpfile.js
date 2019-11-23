@@ -31,6 +31,6 @@ gulp.task('sass', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./src/js/**/*.js', ['js']);
-    gulp.watch('./src/sass/**/*.scss', ['sass']);
+    gulp.watch('./src/js/**/*.js', gulp.parallel(['js'])),
+    gulp.watch('./src/sass/**/*.scss', gulp.parallel(['sass']));
 });
