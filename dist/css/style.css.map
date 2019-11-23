@@ -1,0 +1,1 @@
+{"version":3,"sources":["a.scss","style.scss"],"names":[],"mappings":"AAAA,GACE,MAAO,KCET,GACE,MAAO","file":"style.css","sourcesContent":["h1 {\n  color: #200;\n}","\n@import \"a\";\n\nh1 {\n  color: #300;\n}"]}
