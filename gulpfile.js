@@ -5,6 +5,8 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var cleanCSS = require('gulp-clean-css');
 var sass = require('gulp-sass');
+var nodemon = require('gulp-nodemon')
+var browserSync = require('browser-sync').create();
 
 //script paths
 var jsFiles = 'src/js/**/*.js',
@@ -34,3 +36,21 @@ gulp.task('watch', function () {
     gulp.watch('./src/js/**/*.js', gulp.parallel(['js'])),
     gulp.watch('./src/sass/**/*.scss', gulp.parallel(['sass']));
 });
+
+gulp.task('serve', function (done) {
+    nodemon({
+        script: 'yocto.js'
+        , ext: 'js html'
+        , env: { 'NODE_ENV': 'development' }
+        , done: done
+    })
+})
+
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        port: 4000,
+        proxy: "localhost:3000"
+    });
+});
+
+gulp.task('start', gulp.parallel('watch', 'serve', 'browser-sync'))

@@ -1,41 +1,22 @@
-var $ = {
+// Require the framework and instantiate it
+const fastify = require('fastify')({
+    logger: true
+})
 
-    /**
-     *
-     * @param app
-     */
-    run: function (app) {
-        var url = location.pathname.substring(1);
+fastify.register(require('fastify-static'), {
+    root: __dirname + '/dist',
+})
 
-        document.addEventListener('DOMContentLoaded', function(e) {
-            app[url||'index']()
-        })
-    },
+// Declare a route
+fastify.get('/he', function (request, reply) {
+    reply.send({ hello: 'world' })
+})
 
-    /**
-     *
-     * @param url
-     * @param params
-     * @param cb
-     */
-    get: function (url, params, cb) {
-        var req = new XMLHttpRequest();
-        req.open('GET', url);
-        req.onreadystatechange = function () {
-            if (req.readyState === XMLHttpRequest.DONE) {
-                if (req.status === 200) { cb(req.responseText) }
-            }
-        }
-        req.send()
-    },
-
-    /**
-     *
-     * @param event
-     * @param id
-     * @param cb
-     */
-    on: function (event, id, cb) {
-        document.getElementById(id).addEventListener(event, cb);
+// Run the server!
+fastify.listen(3000, function (err, address) {
+    if (err) {
+        fastify.log.error(err)
+        process.exit(1)
     }
-};
+    fastify.log.info(`server listening on ${address}`)
+})
