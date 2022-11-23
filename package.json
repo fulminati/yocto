@@ -16,7 +16,7 @@
         "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive"
     },
     "devDependencies": {
-        "browser-sync": "^2.26.7",
+        "browser-sync": "^2.27.10",
         "chai": "^3.5.0",
         "chai-fs": "^1.0.0",
         "fastify": "^2.10.0",
